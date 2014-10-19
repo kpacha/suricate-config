@@ -20,7 +20,7 @@ A simple config module with an integrated suricate service discovery system for 
 Include the `kpacha/suricate-config` package in your compose.json with all the dependencies of your project
 
     "require":{
-        "kpacha/suricate-config": "dev-master"
+        "kpacha/suricate-config": "~0.1"
     }
 
 ###Git installation

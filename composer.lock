@@ -103,8 +103,14 @@
             "version": "v1.0.4",
             "source": {
                 "type": "git",
-                "url": "/home/kpacha/NetBeansProjects/suricate-php-sdk",
-                "reference": "bc1b046ddc51fb353456ef4e1df463241536c172"
+                "url": "https://github.com/kpacha/suricate-php-sdk.git",
+                "reference": "49a48f965d7f0982a5061b85a72e945f1cb91c48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kpacha/suricate-php-sdk/zipball/49a48f965d7f0982a5061b85a72e945f1cb91c48",
+                "reference": "49a48f965d7f0982a5061b85a72e945f1cb91c48",
+                "shasum": ""
             },
             "require": {
                 "guzzle/guzzle": "~3.7",
@@ -123,11 +129,7 @@
                     "Kpacha\\Suricate\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Kpacha\\Suricate\\": "test/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -140,7 +142,7 @@
                 "suricate",
                 "zookeeper"
             ],
-            "time": "2014-10-19 18:49:53"
+            "time": "2014-10-19 18:52:12"
         },
         {
             "name": "symfony/config",
