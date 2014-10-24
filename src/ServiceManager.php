@@ -49,19 +49,55 @@ class ServiceManager
 
     public function dumpSolved()
     {
-        $configCache = new ConfigCache($this->getSolvedServicesFileName(), true);
-        $configCache->write(Yaml::dump($this->getUpdatedServices()));
+        try {
+            $this->dump($this->getUpdatedServices());
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     public function refreshConfigWithSolvedServices()
     {
-        $this->dumpSolved();
+        if ($this->dumpSolved()) {
+            $this->refreshConfig();
+        }
+    }
 
-        if (!is_file($this->getMetaCacheConfigFileName()) || !$this->isSolvedServicesFileTracked()) {
-            $this->filesystem = new Filesystem();
-            $this->filesystem->remove($this->getCacheConfigFileName());
+    protected function dump($data)
+    {
+        $configCache = new ConfigCache($this->getSolvedServicesFileName(), true);
+        $configCache->write(Yaml::dump($data));
+    }
+
+    protected function refreshConfig()
+    {
+        if ($this->hasToCleanCache()) {
+            $this->cleanCache();
         }
         new Configuration($this->getConfigDir(), true);
+    }
+
+    protected function hasToCleanCache()
+    {
+        return $this->isCacheConfigFilePresent() &&
+                (!$this->isMetaCacheConfigFilePresent() || !$this->isSolvedServicesFileTracked());
+    }
+
+    private function isCacheConfigFilePresent()
+    {
+        return is_file($this->getCacheConfigFileName());
+    }
+
+    private function isMetaCacheConfigFilePresent()
+    {
+        return is_file($this->getMetaCacheConfigFileName());
+    }
+
+    protected function cleanCache()
+    {
+        $filesystem = new Filesystem();
+        $filesystem->remove($this->getCacheConfigFileName());
     }
 
     protected function suricateClient()
@@ -75,7 +111,7 @@ class ServiceManager
     protected function isSolvedServicesFileTracked()
     {
         $solvedServicesFileName = $this->getSolvedServicesFileName();
-        $meta = unserialize(file_get_contents($this->getMetaCacheConfigFileName()));
+        $meta = $this->getStoredMetadata();
         foreach ($meta as $resource) {
             if ($resource === $solvedServicesFileName) {
                 return true;
@@ -84,22 +120,27 @@ class ServiceManager
 
         return false;
     }
-    
+
+    protected function getStoredMetadata()
+    {
+        return unserialize(file_get_contents($this->getMetaCacheConfigFileName()));
+    }
+
     protected function getConfigDir()
     {
         return $this->config->getConfigDir();
     }
-    
+
     protected function getCacheConfigFileName()
     {
         return $this->getConfigDir() . '/' . Configuration::CACHE_FILE;
     }
-    
+
     protected function getMetaCacheConfigFileName()
     {
         return $this->getCacheConfigFileName() . '.meta';
     }
-    
+
     protected function getSolvedServicesFileName()
     {
         return $this->getConfigDir() . '/' . Configuration::SURICATE_SOLVED_SERVICES . '.yml';
