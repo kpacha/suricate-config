@@ -9,11 +9,13 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     private $filesystem;
     private $configFile;
+    private $helper;
 
     public function setUp()
     {
         $this->configFile = __DIR__ . '/fixtures/' . Configuration::CACHE_FILE;
         $this->filesystem = new Filesystem();
+        $this->helper = new ConfigFileHelper($this->configFile, $this->filesystem);
     }
 
     public function tearDown()
@@ -82,26 +84,17 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     private function getDefaultConfig()
     {
-        return array(Configuration::SURICATE_SERVICE => array(Configuration::DEFAULT_SERVICE_KEY => array('some')));
+        return $this->helper->getDefaultConfig();
     }
 
     private function initConfigFiles($config)
     {
-
-        $fakeConfig = var_export($config, true);
-        $content = <<< PHP
-<?php
-\$config = $fakeConfig;
-PHP;
-
-        $this->filesystem->dumpFile($this->configFile, $content);
-        $this->filesystem->dumpFile($this->configFile . '.meta', 'a:0:{}');
+        $this->helper->initConfigFiles($config);
     }
 
     private function cleanConfigFiles()
     {
-        $this->filesystem->remove($this->configFile);
-        $this->filesystem->remove($this->configFile . '.meta');
+        $this->helper->cleanConfigFiles();
     }
 
 }
