@@ -3,7 +3,7 @@ suricate-config
 
 A simple config module with an integrated suricate service discovery system for php
 
-[![Build Status](https://travis-ci.org/kpacha/suricate-config.png?branch=master)](https://travis-ci.org/kpacha/suricate-config)
+[![Build Status](https://travis-ci.org/kpacha/suricate-config.png?branch=master)](https://travis-ci.org/kpacha/suricate-config) [![Dependency Status](https://www.versioneye.com/user/projects/54691a34950825a8f700004b/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54691a34950825a8f700004b)
 
 #Requirements
 
