@@ -1,6 +1,6 @@
 {
     "name": "kpacha/suricate-config",
-    "description": "Resilent configuration system based on zookeeper",
+    "description": "Resilent configuration system based on zookeeper (and suricate!)",
     "license": "MIT",
     "authors": [
         {
@@ -11,12 +11,7 @@
     "require": {
         "php": ">=5.3.3",
         "kpacha/suricate-php-sdk": "~1.0",
-        "symfony/config": "~2.5",
-        "symfony/finder": "~2.5",
-        "symfony/console": "~2.5"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.3"
+        "kpacha/config": "~0.1"
     },
     "bin": ["bin/suricate-config"],
     "config": {
@@ -25,11 +20,6 @@
     "autoload": {
         "psr-4": {
             "Kpacha\\Suricate\\Config\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Kpacha\\Suricate\\Config\\": "tests/"
         }
     }
 }

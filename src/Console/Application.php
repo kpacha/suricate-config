@@ -3,7 +3,7 @@
 namespace Kpacha\Suricate\Config\Console;
 
 use Kpacha\Suricate\Console\Application as BaseApplication;
-use Kpacha\Suricate\Config\Command\UpdateServices;
+use Kpacha\Config\Command\UpdateServices;
 
 class Application extends BaseApplication
 {
