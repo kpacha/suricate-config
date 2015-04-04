@@ -2,4 +2,5 @@ vendor
 build
 phpunit.xml
 bin/suricate
+bin/phpunit
 bin/config

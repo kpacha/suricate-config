@@ -13,6 +13,9 @@
         "kpacha/suricate-php-sdk": "~1.0",
         "kpacha/config": "~0.1"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~4.6"
+    },
     "bin": ["bin/suricate-config"],
     "config": {
         "bin-dir": "bin"
