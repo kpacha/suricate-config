@@ -47,7 +47,8 @@ Remeber to set the [directory] parameter or composer will create the project in 
 
 #Config files
 
-Just set the value `\\Kpacha\\Suricate\\Config\\ServiceManager` to your `service-manager` config param and fix the url of your suricate server.
+Just set the value `\\Kpacha\\Suricate\\Config\\ServiceManager` to your `service-manager` config param and fix the url of your suricate server. 
+Visit [kpacha/config](https://github.com/kpacha/config) for more info.
 
 #Usage
 
